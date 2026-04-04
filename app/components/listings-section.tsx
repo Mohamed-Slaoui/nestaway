@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { Link } from "react-router";
 import { HeartIcon, StarIcon } from "./icons";
 import { Reveal } from "./reveal";
 
@@ -46,8 +47,9 @@ export function ListingsSection({ listings }: ListingsSectionProps) {
 
             return (
               <Reveal key={listing.title} delay={50 * ((index % 4) + 1)}>
-                <article className="group cursor-pointer overflow-hidden rounded-[20px] bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(26,23,19,0.12)]">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                <Link to={`/spaces/${listing.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="block h-full outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 rounded-[20px]">
+                  <article className="group cursor-pointer overflow-hidden rounded-[20px] bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(26,23,19,0.12)] h-full">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                     <img
                       src={listing.image}
                       alt={listing.alt}
@@ -85,7 +87,8 @@ export function ListingsSection({ listings }: ListingsSectionProps) {
                       <span className="text-ink/40">{listing.period}</span>
                     </div>
                   </div>
-                </article>
+                  </article>
+                </Link>
               </Reveal>
             );
           })}

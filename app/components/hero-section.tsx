@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { Reveal } from "./reveal";
 
 type HeroImage = {
@@ -28,7 +29,7 @@ type HeroSectionProps = {
 
 function HeroTile({ image }: { image: HeroImage }) {
   return (
-    <div className={`group relative overflow-hidden rounded-[20px] bg-[#e0d6cc] ${image.className}`}>
+    <Link to={`/spaces/${(image.title || image.alt).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className={`group relative overflow-hidden rounded-[20px] bg-[#e0d6cc] ${image.className}`}>
       <img
         src={image.src}
         alt={image.alt}
@@ -50,7 +51,7 @@ function HeroTile({ image }: { image: HeroImage }) {
       <div className="absolute bottom-3 right-3 rounded-full bg-clay px-3.5 py-1.5 text-[0.82rem] font-semibold text-white shadow-sm">
         {image.price}
       </div>
-    </div>
+    </Link>
   );
 }
 
