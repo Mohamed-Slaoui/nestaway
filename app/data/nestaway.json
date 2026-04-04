@@ -16,7 +16,7 @@
     "whoPlaceholder": "Add guests"
   },
   "hero": {
-    "eyebrow": "🌍 Over 2M+ spaces worldwide",
+    "eyebrow": "Over 2M+ spaces worldwide",
     "headline": {
       "line1": "Find where",
       "line2": "life feels",
@@ -77,14 +77,46 @@
     ]
   },
   "categories": [
-    { "label": "All Spaces", "icon": "dot", "active": true },
-    { "label": "Homes", "icon": "🏡", "active": false },
-    { "label": "Apartments", "icon": "🏙️", "active": false },
-    { "label": "Countryside", "icon": "🌿", "active": false },
-    { "label": "Beach", "icon": "🏖️", "active": false },
-    { "label": "Mountain", "icon": "🏔️", "active": false },
-    { "label": "Shops", "icon": "🛍️", "active": false },
-    { "label": "Top Rated", "icon": "⭐", "active": false }
+    {
+      "label": "All Spaces",
+      "icon": "dot",
+      "active": true
+    },
+    {
+      "label": "Homes",
+      "icon": "🏡",
+      "active": false
+    },
+    {
+      "label": "Apartments",
+      "icon": "🏙️",
+      "active": false
+    },
+    {
+      "label": "Countryside",
+      "icon": "🌿",
+      "active": false
+    },
+    {
+      "label": "Beach",
+      "icon": "🏖️",
+      "active": false
+    },
+    {
+      "label": "Mountain",
+      "icon": "🏔️",
+      "active": false
+    },
+    {
+      "label": "Shops",
+      "icon": "🛍️",
+      "active": false
+    },
+    {
+      "label": "Top Rated",
+      "icon": "⭐",
+      "active": false
+    }
   ],
   "listings": [
     {
@@ -185,9 +217,18 @@
     }
   ],
   "stats": [
-    { "value": "2M+", "label": "Spaces listed globally" },
-    { "value": "190", "label": "Countries covered" },
-    { "value": "4.9★", "label": "Average guest rating" }
+    {
+      "value": "2M+",
+      "label": "Spaces listed globally"
+    },
+    {
+      "value": "190",
+      "label": "Countries covered"
+    },
+    {
+      "value": "4.9★",
+      "label": "Average guest rating"
+    }
   ],
   "editorial": {
     "tag": "🛍️ Shop Rentals",
@@ -251,15 +292,30 @@
     "columns": [
       {
         "title": "Explore",
-        "links": ["Homes", "Apartments", "Shops", "Countryside"]
+        "links": [
+          "Homes",
+          "Apartments",
+          "Shops",
+          "Countryside"
+        ]
       },
       {
         "title": "Hosting",
-        "links": ["Become a host", "Host resources", "Community forum", "Insurance"]
+        "links": [
+          "Become a host",
+          "Host resources",
+          "Community forum",
+          "Insurance"
+        ]
       },
       {
         "title": "Company",
-        "links": ["About us", "Press", "Careers", "Contact"]
+        "links": [
+          "About us",
+          "Press",
+          "Careers",
+          "Contact"
+        ]
       }
     ]
   }
