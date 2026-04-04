@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GlobeIcon, MenuIcon, SearchIcon, HeartIcon, UserIcon, ChevronDownIcon } from "./icons";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 type HeaderContent = {
   brand: string;
@@ -24,6 +24,9 @@ type SiteHeaderProps = {
 export function SiteHeader({ header, search }: SiteHeaderProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,12 +79,28 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
                 <input
                   className="w-full bg-transparent py-3 text-sm text-ink outline-none placeholder:text-ink/30 sm:py-3.5"
                   placeholder={`${search.wherePlaceholder} • ${search.whenPlaceholder} • ${search.whoPlaceholder}`}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setIsSearchFocused(false)}
+                  onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && searchQuery.trim()) {
+                      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+                      setIsSearchFocused(false);
+                      setSearchQuery("");
+                    }
+                  }}
                 />
               </div>
               <button
                 type="button"
+                onClick={() => {
+                  if (searchQuery.trim()) {
+                    navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+                    setIsSearchFocused(false);
+                    setSearchQuery("");
+                  }
+                }}
                 className="mr-1.5 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-clay text-white transition-all duration-200 hover:bg-bark hover:scale-105 sm:flex"
                 aria-label="Search"
               >
@@ -91,7 +110,39 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
 
             {/* Quick filters - appears when focused */}
             {isSearchFocused && (
-              <div className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-stone/50 bg-white/95 p-3 backdrop-blur-md shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute left-0 right-0 top-full mt-2 rounded-2xl border border-stone/50 bg-white p-3 backdrop-blur-md shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-ink/50">Suggestions</div>
+                <div className="mb-3 flex flex-col">
+                  {["Paris, France", "Bali, Indonesia", "New York, USA", "Kyoto, Japan"]
+                    .filter((s) => s.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        onClick={() => {
+                          setSearchQuery("");
+                          setIsSearchFocused(false);
+                          navigate(`/search?q=${encodeURIComponent(suggestion)}`);
+                        }}
+                        className="rounded-lg px-3 py-2 text-left text-sm text-ink/80 hover:bg-clay/5 hover:text-clay"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  {searchQuery.trim() && !["Paris", "Bali", "New York", "Kyoto"].some(l => l.toLowerCase().includes(searchQuery.toLowerCase())) && (
+                    <button
+                      onClick={() => {
+                        navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+                        setSearchQuery("");
+                        setIsSearchFocused(false);
+                      }}
+                      className="rounded-lg px-3 py-2 text-left text-sm font-medium text-ink hover:bg-clay/5 hover:text-clay"
+                    >
+                      Search for "{searchQuery}"
+                    </button>
+                  )}
+                </div>
+
+                <div className="mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-ink/50">Filters</div>
                 <div className="flex flex-wrap gap-2">
                   {["Anywhere", "Any week", "Any guests"].map((filter) => (
                     <button key={filter} className="rounded-full border border-stone/50 px-3 py-1.5 text-xs text-ink/70 transition-colors hover:border-clay hover:bg-clay/5">
@@ -112,13 +163,13 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
             </button>
 
             {/* Favorites button - new */}
-            <button
-              type="button"
+            <Link
+              to="/favorites"
               className="hidden h-9 w-9 items-center justify-center rounded-full border border-stone/50 text-ink/60 transition-all hover:border-clay hover:bg-clay/5 hover:text-clay sm:flex"
               aria-label="Favorites"
             >
               <HeartIcon className="h-4 w-4" />
-            </button>
+            </Link>
 
             {/* Language selector - redesigned */}
             <button
@@ -130,16 +181,38 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
             </button>
 
             {/* User menu - redesigned with avatar */}
-            <button
-              type="button"
-              className="group flex h-9 items-center gap-2 rounded-full border border-stone/50 bg-white/50 pl-2 pr-3 transition-all hover:border-clay hover:shadow-md"
-              aria-label="Menu"
-            >
-              <MenuIcon className="h-3.5 w-3.5 text-ink/60" />
-              <div className="hidden h-6 w-6 items-center justify-center rounded-full bg-clay/10 text-clay transition-colors group-hover:bg-clay/20 sm:flex">
-                <UserIcon className="h-3 w-3" />
-              </div>
-            </button>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                className="group flex h-9 items-center gap-2 rounded-full border border-stone/50 bg-white/50 pl-2 pr-3 transition-all hover:border-clay hover:shadow-md"
+                aria-label="Menu"
+              >
+                <MenuIcon className="h-3.5 w-3.5 text-ink/60" />
+                <div className="hidden h-6 w-6 items-center justify-center rounded-full bg-clay/10 text-clay transition-colors group-hover:bg-clay/20 sm:flex">
+                  <UserIcon className="h-3 w-3" />
+                </div>
+              </button>
+
+              {isUserMenuOpen && (
+                <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-stone/50 bg-white/95 py-2 shadow-xl backdrop-blur-md animate-in fade-in slide-in-from-top-2 duration-200">
+                  <Link to="/auth/sign-up" onClick={() => setIsUserMenuOpen(false)} className="block px-4 py-2.5 text-sm font-medium text-ink hover:bg-stone/50">
+                    Sign up
+                  </Link>
+                  <Link to="/auth/sign-in" onClick={() => setIsUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-ink/80 hover:bg-stone/50">
+                    Log in
+                  </Link>
+                  <div className="my-2 h-[1px] w-full bg-stone/50"></div>
+                  <Link to="/account" onClick={() => setIsUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-ink/80 hover:bg-stone/50">
+                    Account
+                  </Link>
+                  <div className="my-2 h-[1px] w-full bg-stone/50"></div>
+                  <Link to="/" onClick={() => setIsUserMenuOpen(false)} className="block px-4 py-2.5 text-sm text-ink/80 hover:bg-stone/50">
+                    Help Center
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>

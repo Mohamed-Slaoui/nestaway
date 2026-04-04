@@ -1,6 +1,15 @@
 import { Link, useParams } from "react-router";
 import data from "../data/nestaway.json";
 import { HeartIcon, StarIcon, ArrowRightIcon } from "../components/icons";
+import { useFavorites } from "../context/favorites-context";
+import type { Route } from "../+types/root";
+
+export function meta({ params }: Route.MetaArgs) {
+  return [
+    { title: `${params.id} | Nestaway` },
+    { name: "description", content: "Nestaway - Find your dream home" },
+  ];
+}
 
 // Extra images to simulate a gallery view since we only have 1 image in the JSON per listing
 const galleryPlaceholders = [
@@ -16,6 +25,10 @@ function generateSlug(title: string) {
 
 export default function Property() {
   const { id } = useParams();
+  const { isFavorite, toggleFavorite } = useFavorites();
+
+  if (!id) return null;
+  const isFav = isFavorite(id);
 
   let listing = data.listings.find(
     (l) => generateSlug(l.title) === id
@@ -83,9 +96,12 @@ export default function Property() {
               </svg>
               Share
             </button>
-            <button className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-stone/50">
-              <HeartIcon className="h-4 w-4" />
-              Save
+            <button
+              className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-stone/50"
+              onClick={() => toggleFavorite(id)}
+            >
+              <HeartIcon filled={isFav} className={`h-4 w-4 ${isFav ? "text-rust" : ""}`} />
+              {isFav ? "Saved" : "Save"}
             </button>
           </div>
         </div>

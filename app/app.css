@@ -44,3 +44,45 @@
     transform: translateY(0);
   }
 }
+
+.animate-page {
+  /* Using a very smooth and elegant cubic-bezier for a premium feel */
+  animation: pageIn 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes pageIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 1. Global scrollbar styling for Chrome/Safari/Edge */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-stone);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-clay);
+}
+
+/* 2. Global scrollbar styling for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-stone) transparent;
+}
