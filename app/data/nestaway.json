@@ -1,0 +1,266 @@
+{
+  "site": {
+    "title": "Nestaway — Find Your Perfect Space",
+    "description": "Curated homes, studios, and shops that make every stay feel like yours."
+  },
+  "header": {
+    "brand": "nestaway",
+    "hostLabel": "Become a host"
+  },
+  "search": {
+    "where": "Where",
+    "when": "When",
+    "who": "Who",
+    "wherePlaceholder": "Search destinations",
+    "whenPlaceholder": "Add dates",
+    "whoPlaceholder": "Add guests"
+  },
+  "hero": {
+    "eyebrow": "🌍 Over 2M+ spaces worldwide",
+    "headline": {
+      "line1": "Find where",
+      "line2": "life feels",
+      "line3": "right."
+    },
+    "description": "Curated homes, studios, and shops that make every stay feel like yours.",
+    "images": [
+      {
+        "className": "col-span-12 md:col-span-5 row-span-2",
+        "src": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop",
+        "alt": "Villa",
+        "badge": "🏡 Entire villa",
+        "title": "Tuscan Stone Villa",
+        "subtitle": "Florence, Italy · 5 guests",
+        "price": "$280 / night",
+        "showInfo": true
+      },
+      {
+        "className": "col-span-12 md:col-span-4 row-span-1",
+        "src": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop",
+        "alt": "Modern home",
+        "badge": "✨ New",
+        "title": "Glass House, Malibu",
+        "subtitle": "",
+        "price": "$420 / night",
+        "showInfo": true
+      },
+      {
+        "className": "col-span-6 md:col-span-3 row-span-1",
+        "src": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&auto=format&fit=crop",
+        "alt": "Cozy cabin",
+        "badge": "",
+        "title": "",
+        "subtitle": "",
+        "price": "$95 / night",
+        "showInfo": false
+      },
+      {
+        "className": "col-span-6 md:col-span-4 row-span-1",
+        "src": "https://images.unsplash.com/photo-1554995207-c18c203602cb?w=600&auto=format&fit=crop",
+        "alt": "Scandinavian apartment",
+        "badge": "🛖 Apartment",
+        "title": "",
+        "subtitle": "",
+        "price": "$130 / night",
+        "showInfo": false
+      },
+      {
+        "className": "col-span-6 md:col-span-3 row-span-1",
+        "src": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&auto=format&fit=crop",
+        "alt": "Loft",
+        "badge": "",
+        "title": "",
+        "subtitle": "",
+        "price": "$195 / night",
+        "showInfo": false
+      }
+    ]
+  },
+  "categories": [
+    { "label": "All Spaces", "icon": "dot", "active": true },
+    { "label": "Homes", "icon": "🏡", "active": false },
+    { "label": "Apartments", "icon": "🏙️", "active": false },
+    { "label": "Countryside", "icon": "🌿", "active": false },
+    { "label": "Beach", "icon": "🏖️", "active": false },
+    { "label": "Mountain", "icon": "🏔️", "active": false },
+    { "label": "Shops", "icon": "🛍️", "active": false },
+    { "label": "Top Rated", "icon": "⭐", "active": false }
+  ],
+  "listings": [
+    {
+      "title": "Lakeside Cottage",
+      "location": "Lake District, UK · 4 guests",
+      "rating": "4.97",
+      "price": "$145",
+      "period": "/ night",
+      "category": "🌿 Countryside",
+      "emoji": "❤️",
+      "image": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=500&auto=format&fit=crop",
+      "alt": "Cottage",
+      "favorite": true
+    },
+    {
+      "title": "Cliffside Beach House",
+      "location": "Amalfi Coast, Italy · 6 guests",
+      "rating": "4.89",
+      "price": "$310",
+      "period": "/ night",
+      "category": "🏖️ Beach",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500&auto=format&fit=crop",
+      "alt": "Beach house",
+      "favorite": false
+    },
+    {
+      "title": "Soho Design Loft",
+      "location": "New York, USA · 2 guests",
+      "rating": "4.95",
+      "price": "$225",
+      "period": "/ night",
+      "category": "🏙️ Apartment",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&auto=format&fit=crop",
+      "alt": "City loft",
+      "favorite": false
+    },
+    {
+      "title": "Artisan Concept Store",
+      "location": "Marais, Paris · Commercial",
+      "rating": "4.91",
+      "price": "$85",
+      "period": "/ day",
+      "category": "🛍️ Shop",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&auto=format&fit=crop",
+      "alt": "Shop",
+      "favorite": false
+    },
+    {
+      "title": "Alpine Glass Cabin",
+      "location": "Zermatt, Switzerland · 2 guests",
+      "rating": "5.00",
+      "price": "$390",
+      "period": "/ night",
+      "category": "🏔️ Mountain",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=500&auto=format&fit=crop",
+      "alt": "Cabin",
+      "favorite": false
+    },
+    {
+      "title": "Santorini Sunset Villa",
+      "location": "Oia, Greece · 8 guests",
+      "rating": "4.93",
+      "price": "$560",
+      "period": "/ night",
+      "category": "🏡 Villa",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1494526585095-c41746248156?w=500&auto=format&fit=crop",
+      "alt": "Villa pool",
+      "favorite": false
+    },
+    {
+      "title": "Vintage Café Corner",
+      "location": "Shoreditch, London · Commercial",
+      "rating": "4.78",
+      "price": "$120",
+      "period": "/ day",
+      "category": "🛍️ Shop",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=500&auto=format&fit=crop",
+      "alt": "Cafe shop",
+      "favorite": false
+    },
+    {
+      "title": "Bali Jungle Pool House",
+      "location": "Ubud, Bali · 4 guests",
+      "rating": "4.86",
+      "price": "$175",
+      "period": "/ night",
+      "category": "🏖️ Beach",
+      "emoji": "🤍",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&auto=format&fit=crop",
+      "alt": "Resort",
+      "favorite": false
+    }
+  ],
+  "stats": [
+    { "value": "2M+", "label": "Spaces listed globally" },
+    { "value": "190", "label": "Countries covered" },
+    { "value": "4.9★", "label": "Average guest rating" }
+  ],
+  "editorial": {
+    "tag": "🛍️ Shop Rentals",
+    "title": {
+      "line1": "Your pop-up shop,",
+      "line2": "ready tomorrow."
+    },
+    "description": "Whether it's a weekend market stall or a month-long boutique, Nestaway connects creative entrepreneurs with unique commercial spaces in prime locations.",
+    "bullets": [
+      "Flexible daily or monthly rentals",
+      "Verified and insured spaces",
+      "Instant booking, no paperwork"
+    ],
+    "buttonLabel": "Browse commercial spaces",
+    "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&auto=format&fit=crop",
+    "alt": "Boutique",
+    "floatingBadge": {
+      "label": "Next available",
+      "title": "Studio on Rue du Bac",
+      "status": "From tomorrow · $95/day"
+    }
+  },
+  "destinations": [
+    {
+      "name": "Kyoto",
+      "count": "218 spaces",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&auto=format&fit=crop",
+      "alt": "Japan"
+    },
+    {
+      "name": "Venice",
+      "count": "143 spaces",
+      "image": "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=400&auto=format&fit=crop",
+      "alt": "Venice"
+    },
+    {
+      "name": "Marrakech",
+      "count": "97 spaces",
+      "image": "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=400&auto=format&fit=crop",
+      "alt": "Morocco"
+    },
+    {
+      "name": "Reykjavik",
+      "count": "64 spaces",
+      "image": "https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400&auto=format&fit=crop",
+      "alt": "Iceland"
+    }
+  ],
+  "cta": {
+    "tag": "🏡 List your space",
+    "title": {
+      "line1": "Turn your space",
+      "line2": "into income."
+    },
+    "description": "Join thousands of hosts who earn with Nestaway. Start in 10 minutes, no commitment required.",
+    "primaryButton": "Start hosting",
+    "secondaryButton": "Learn more"
+  },
+  "footer": {
+    "description": "Finding spaces that feel like home, everywhere in the world.",
+    "columns": [
+      {
+        "title": "Explore",
+        "links": ["Homes", "Apartments", "Shops", "Countryside"]
+      },
+      {
+        "title": "Hosting",
+        "links": ["Become a host", "Host resources", "Community forum", "Insurance"]
+      },
+      {
+        "title": "Company",
+        "links": ["About us", "Press", "Careers", "Contact"]
+      }
+    ]
+  }
+}

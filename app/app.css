@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
+
+  --color-ink: #1a1713;
+  --color-clay: #c9a882;
+  --color-stone: #e8e0d5;
+  --color-bark: #5c4a35;
+  --color-fog: #f5f2ef;
+  --color-sage: #8baf8a;
+  --color-rust: #c45e3a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-fog text-ink font-sans antialiased overflow-x-hidden;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-clay) 30%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+}
+
+.reveal.visible {
+  animation: revealAnim 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes revealAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
