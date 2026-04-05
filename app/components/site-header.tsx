@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GlobeIcon, MenuIcon, SearchIcon, HeartIcon, UserIcon, ChevronDownIcon } from "./icons";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 
 type HeaderContent = {
   brand: string;
@@ -27,6 +27,7 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -217,20 +218,24 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
       </nav>
 
       {/* Mobile bottom bar */}
-      <div className="fixed inset-x-0 bottom-0 z-[70] border-t border-stone/30 bg-fog/95 px-6 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl md:hidden">
-        <div className="flex items-center justify-around">
-          <button className="flex flex-col items-center gap-1 text-xs text-ink/60">
+      <div className="fixed inset-x-0 bottom-0 z-[9999] border-t border-stone/30 bg-fog/95 px-6 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl md:hidden">
+        <div className="flex w-full items-center justify-around">
+
+          <Link to="/" className={`flex flex-1 flex-col items-center gap-1 text-xs py-2 ${location.pathname === "/" ? "text-clay" : "text-ink/60"}`}>
             <SearchIcon className="h-5 w-5" />
             <span>Explore</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs text-ink/60">
+          </Link>
+
+          <Link to="/favorites" className={`flex flex-1 flex-col items-center gap-1 text-xs py-2 ${location.pathname === "/favorites" ? "text-clay" : "text-ink/60"}`}>
             <HeartIcon className="h-5 w-5" />
             <span>Saved</span>
-          </button>
-          <button className="flex flex-col items-center gap-1 text-xs text-ink/60">
+          </Link>
+
+          <Link to="/account" className={`flex flex-1 flex-col items-center gap-1 text-xs py-2 ${location.pathname.startsWith("/account") ? "text-clay" : "text-ink/60"}`}>
             <UserIcon className="h-5 w-5" />
             <span>Profile</span>
-          </button>
+          </Link>
+
         </div>
       </div>
     </>

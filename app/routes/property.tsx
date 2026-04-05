@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router";
+import { useState, useRef, useEffect } from "react";
 import data from "../data/nestaway.json";
 import { HeartIcon, StarIcon, ArrowRightIcon } from "../components/icons";
 import { useFavorites } from "../context/favorites-context";
@@ -26,6 +27,9 @@ function generateSlug(title: string) {
 export default function Property() {
   const { id } = useParams();
   const { isFavorite, toggleFavorite } = useFavorites();
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   if (!id) return null;
   const isFav = isFavorite(id);
@@ -70,6 +74,19 @@ export default function Property() {
     );
   }
 
+  const galleryImages = [listing.image, ...galleryPlaceholders];
+
+  const handleScroll = (e: any) => {
+    const scrollLeft = e.target.scrollLeft;
+    const width = e.target.clientWidth;
+
+    const index = Math.round(scrollLeft / width);
+
+    setCurrentImageIndex(
+      Math.min(index, galleryImages.length - 1)
+    );
+  };
+
   // Parse location to fake some extra info
   const numGuests = listing.location.match(/(\d+) guests/)?.[1] || "2";
 
@@ -107,16 +124,48 @@ export default function Property() {
         </div>
 
         {/* Image Gallery */}
-        <div className="mb-12 grid grid-cols-1 md:grid-cols-2 gap-3 overflow-hidden rounded-3xl h-[60vh] md:h-[500px]">
-          <div className="h-full overflow-hidden">
-            <img src={listing.image} alt={listing.alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+        <div className="mb-12 md:rounded-3xl md:h-[500px] -mx-4 sm:mx-0 relative">
+          {/* Mobile: Horizontal scroll gallery */}
+          <div className="md:hidden">
+            <div
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="flex flex-nowrap h-[50vh] overflow-x-auto snap-x snap-mandatory overscroll-x-contain no-scrollbar touch-pan-x mx-3"
+            >
+              {galleryImages.map((src, i) => (
+                <div key={i} className="min-w-full h-full snap-center shrink-0 overflow-hidden">
+                  <img
+                    src={src}
+                    alt="Property view"
+                    className="w-96 h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Scroll Indicator Overlay */}
+            <div className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-black/40 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1.5 rounded-full pointer-events-none">
+              <span className="flex gap-1">
+                {galleryImages.map((_, idx) => (
+                  <div key={idx} className={`h-1 w-1 rounded-full ${idx === currentImageIndex ? "bg-white" : "bg-white/40"}`} />
+                ))}
+              </span>
+              <span className="ml-1">{currentImageIndex + 1} / {galleryImages.length}</span>
+            </div>
           </div>
-          <div className="hidden h-full grid-cols-2 gap-3 md:grid">
-            {galleryPlaceholders.map((src, i) => (
-              <div key={i} className="h-[244px] overflow-hidden">
-                <img src={src} alt="Property view" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
-              </div>
-            ))}
+
+          {/* Desktop: Grid gallery */}
+          <div className="hidden md:grid md:grid-cols-2 gap-3 h-full">
+            <div className="h-full overflow-hidden rounded-2xl">
+              <img src={listing.image} alt={listing.alt} className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+            <div className="grid h-full grid-cols-2 gap-3 overflow-hidden rounded-2xl">
+              {galleryPlaceholders.map((src, i) => (
+                <div key={i} className="h-[244px] overflow-hidden">
+                  <img src={src} alt="Property view" className="h-full w-full object-cover transition-transform duration-700 hover:scale-105" />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -239,7 +288,7 @@ export default function Property() {
                 </div>
               </div>
 
-              <button className="w-full rounded-2xl bg-gradient-to-r from-clay to-bark py-4 text-center text-[15px] font-semibold text-white transition-all duration-300 hover:shadow-[0_8px_16px_rgba(92,74,53,0.25)] active:scale-[0.98]">
+              <button className="w-full rounded-2xl bg-linear-to-r from-clay to-bark py-4 text-center text-[15px] font-semibold text-white transition-all duration-300 hover:shadow-[0_8px_16px_rgba(92,74,53,0.25)] active:scale-[0.98]">
                 Check availability
               </button>
 
@@ -247,7 +296,7 @@ export default function Property() {
                 You won't be charged yet
               </div>
 
-              <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#f5f2ef] p-4 text-sm">
+              <div className="mt-6 flex items-center gap-3 rounded-xl bg-fog p-4 text-sm">
                 <span className="text-xl">✨</span>
                 <p className="font-light text-ink/80">
                   <span className="font-medium">Lower price.</span> Your dates are $15 less than the average nightly rate over the last 3 months.
