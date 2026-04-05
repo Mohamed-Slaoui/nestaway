@@ -156,11 +156,10 @@ export function SiteHeader({ header, search }: SiteHeaderProps) {
 
           {/* Right Side Actions - Redesigned */}
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            {/* Become a host - with hover animation */}
-            <button className="group hidden rounded-full px-4 py-2 text-sm font-medium text-ink transition-all hover:bg-stone/50 md:flex md:items-center md:gap-1.5">
+            {/* Host Dashboard Link */}
+            <Link to="/host/dashboard" className="hidden rounded-full px-4 py-2 text-sm font-medium text-ink transition-all hover:bg-stone/50 md:flex md:items-center md:gap-1.5">
               <span>{header.hostLabel}</span>
-              <ChevronDownIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
-            </button>
+            </Link>
 
             {/* Favorites button - new */}
             <Link

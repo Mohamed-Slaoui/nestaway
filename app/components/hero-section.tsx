@@ -29,14 +29,14 @@ type HeroSectionProps = {
 
 function HeroTile({ image }: { image: HeroImage }) {
   return (
-    <Link to={`/spaces/${(image.title || image.alt).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className={`group relative overflow-hidden rounded-[20px] bg-[#e0d6cc] ${image.className}`}>
+    <Link to={`/spaces/${(image.title || image.alt).toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className={`group relative h-full overflow-hidden rounded-[20px] bg-[#e0d6cc] ${image.className}`}>
       <img
         src={image.src}
         alt={image.alt}
         loading="lazy"
         className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.07]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-linear-to-t from-ink/55 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       {image.badge ? (
         <span className="absolute left-3 top-3 rounded-full bg-fog/92 px-3.5 py-1.5 text-[0.78rem] font-medium text-ink shadow-sm backdrop-blur-md">
           {image.badge}
@@ -75,7 +75,7 @@ export function HeroSection({ hero }: HeroSectionProps) {
           </p>
         </Reveal>
 
-        <Reveal delay={150} className="grid h-[520px] grid-cols-12 grid-rows-2 gap-4">
+        <Reveal delay={150} className="grid md:h-[520px] grid-cols-12 md:grid-rows-2 auto-rows-[180px] md:auto-rows-auto gap-4">
           {hero.images.map((image) => (
             <HeroTile key={`${image.alt}-${image.price}`} image={image} />
           ))}

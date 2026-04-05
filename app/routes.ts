@@ -6,7 +6,8 @@ export default [
     route("spaces/:id", "routes/property.tsx"),
     route("favorites", "routes/favorites.tsx"),
     route("search", "routes/search.tsx"),
-    route("account", "routes/account.tsx")
+    route("account", "routes/account.tsx"),
+    route("host/dashboard", "routes/host-dashboard.tsx")
   ]),
   layout("routes/auth-layout.tsx", [
     route("auth/sign-in", "routes/sign-in.tsx"),

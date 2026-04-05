@@ -20,7 +20,7 @@ export default function Layout() {
       <main key={location.pathname} className="animate-page">
         <Outlet />
       </main>
-      {!currentRoute(["auth/sign-in", "auth/sign-up", "account"]) && <SiteFooter footer={data.footer} />}
+      {!currentRoute(["auth/sign-in", "auth/sign-up", "account", "host/dashboard"]) && <SiteFooter footer={data.footer} />}
     </FavoritesProvider>
   );
 }
